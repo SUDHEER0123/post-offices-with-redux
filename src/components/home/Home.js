@@ -13,7 +13,6 @@ const Home = (props) => {
   const [location, setLocation] = useState("");
   const [screen, setScreen] = useState("");
   const dispatch = useDispatch();
-  console.log(placesPin);
   const fetchPlacesPin = () => {
     const parsedPincode = parseInt(pincode);
     if (!isNaN(parsedPincode)) {
@@ -49,13 +48,13 @@ const Home = (props) => {
         </p>
         <div className="flex gap-2 m-5 flex-wrap">
           <button
-            className="px-3 py-2 border border-black rounded-md"
+            className="px-3 py-2 border border-black rounded-md hover:bg-gray-300"
             onClick={() => setScreen("pin")}
           >
             Search by Pincode
           </button>
           <button
-            className="px-3 py-2 border border-black rounded-md"
+            className="px-3 py-2 border border-black rounded-md hover:bg-gray-300"
             onClick={() => setScreen("loc")}
           >
             Search by Location
@@ -69,13 +68,13 @@ const Home = (props) => {
               id="pin"
               placeholder="Enter the pincode"
               value={pincode}
-              className="p-2 rounded-md"
+              className="p-2 rounded-md border border-gray-400 hover:border hover:border-black"
               onChange={(e) => setPincode(e.target.value)}
               style={{ backgroundColor: "rgba(233, 213, 255, 1)" }}
             />
             <button
               onClick={fetchPlacesPin}
-              className="px-3 py-2 border border-black rounded-md"
+              className="px-3 py-2 border  border-black rounded-md hover:bg-gray-300"
             >
               Search
             </button>
@@ -90,12 +89,12 @@ const Home = (props) => {
               placeholder="Enter the location here"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="p-2 rounded-md"
+              className="p-2 rounded-md border border-gray-400 hover:border hover:border-black"
               style={{ backgroundColor: "rgba(233, 213, 255, 1)" }}
             />
             <button
               onClick={fetchPlacesLoc}
-              className="px-3 py-2 border border-black rounded-md"
+              className="px-3 py-2 border border-black rounded-md hover:bg-gray-300"
             >
               Search
             </button>
@@ -117,8 +116,9 @@ const Home = (props) => {
           ))}
         {screen === "pin" &&
           placesPin &&
-          placesPin.map((ele) => (
+          placesPin.map((ele, idx) => (
             <Card
+              key={idx+"post"}
               Name={ele.Name}
               Region={ele.Region}
               District={ele.District}

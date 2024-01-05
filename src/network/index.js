@@ -4,6 +4,7 @@ import axios from "axios";
 const transport = axios.create({
   baseURL: API_ENDPOINTS.BASE_URL,
   withCredentials: false,
+  timeout: 50000000,
 });
 
 transport.interceptors.request.use(
